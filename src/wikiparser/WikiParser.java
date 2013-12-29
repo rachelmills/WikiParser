@@ -8,20 +8,13 @@ package wikiparser;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.Enumeration;
 import java.util.zip.GZIPInputStream;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipFile;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import org.xml.sax.SAXException;
-//import org.apache.logging.log4j.Logger;
-import java.util.logging.*;
 import org.xml.sax.InputSource;
 
 /**
@@ -44,6 +37,7 @@ public class WikiParser {
             br = new BufferedReader(new InputStreamReader(gzipstream));
         
             MyHandler handler = new MyHandler();
+         //   TestHandler handler = new TestHandler();
                         
             saxParser.parse(new InputSource(br), handler);
     }

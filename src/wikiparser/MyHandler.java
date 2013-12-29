@@ -77,9 +77,7 @@ public class MyHandler extends DefaultHandler {
                         if ("id".equals(attributes.getLocalName(i))) {
                             isId = true;
                             writeGraphData(attributes.getValue(i));
-                            writeGraphData(",");
                             writeTextData(attributes.getValue(i));
-                            writeTextData(",");
                             isId = false;
                         }
                     }
@@ -87,6 +85,7 @@ public class MyHandler extends DefaultHandler {
                 break;
             case "title":
                 isTitle = true;
+                writeGraphData(",");
                 break;
             case "categories":
                 isCategories = true;
@@ -110,21 +109,21 @@ public class MyHandler extends DefaultHandler {
             isId = false;
         } else if (isTitle) {
             writeGraphData(temp);
-            writeGraphData(",");
             isTitle = false;
-        } else if (isCategories) {
-            writeGraphData(temp);
-            if (!temp.isEmpty()) {
-                writeGraphData("\n");
-            } else {
-                System.out.println("debugging");
-            }
+        } else if (isCategories) {            
+            if (!(temp.length() == 1 && temp.equals("\n"))) {
+                writeGraphData(",");
+                writeGraphData(temp);
+            } 
+            writeGraphData("\n");
             isCategories = false;
             
         } else if (isText) {
             if (temp.startsWith("\n")) {
                 temp = temp.substring(1);
             }
+            
+            writeTextData(",");
             temp = temp + "\n";
             writeTextData(temp);
             isText = false;
