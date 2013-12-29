@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package wikiparser;
 
 import java.io.FileNotFoundException;
@@ -28,9 +27,9 @@ public class MyHandler extends DefaultHandler {
     FileOutputStream fos2;
     static private Writer out;
     static private Writer out2;
-    
+
     public String temp;
-    
+
     boolean isId = false;
     boolean isTitle = false;
     boolean isCategories = false;
@@ -38,8 +37,8 @@ public class MyHandler extends DefaultHandler {
 
     public MyHandler() {
         try {
-            fos = new FileOutputStream("test3.txt");
-            fos2 = new FileOutputStream("test4.txt");
+            fos = new FileOutputStream("test5.txt");
+            fos2 = new FileOutputStream("test6.txt");
         } catch (FileNotFoundException e) {
             Logger.getLogger(MyHandler.class.getName()).log(Level.INFO, "Exception is {0}", e);
         }
@@ -59,7 +58,7 @@ public class MyHandler extends DefaultHandler {
             throw new SAXException("I/O Error", e);
         }
     }
-    
+
     private void writeTextData(String s) throws SAXException {
         try {
             out2.write(s);
@@ -84,7 +83,8 @@ public class MyHandler extends DefaultHandler {
                             isId = false;
                         }
                     }
-                }   break;
+                }
+                break;
             case "title":
                 isTitle = true;
                 break;
@@ -95,33 +95,39 @@ public class MyHandler extends DefaultHandler {
                 isText = true;
                 break;
         }
-}
+    }
 
     @Override
     public void endElement(String uri, String localName, String qName) throws SAXException {
         // not required 
     }
-    
+
     @Override
     public void characters(char[] buffer, int start, int length) throws SAXException {
-              temp = new String(buffer, start, length);
-              if (isId) {
-                  writeGraphData(temp);
-                  isId = false;
-              } else if (isTitle) {
-                  writeGraphData(temp);
-                  writeGraphData(",");
-                  isTitle = false;
-              } else if (isCategories) {
-                  writeGraphData(temp);
-                  writeGraphData("\n");
-                  isCategories = false;
-              } else if (isText) {
-                  if (temp.startsWith("\n")) {
-                  temp = temp.substring(1) + "\n";
-                  writeTextData(temp);
-                  isText = false;
-              }
+        temp = new String(buffer, start, length);
+        if (isId) {
+            writeGraphData(temp);
+            isId = false;
+        } else if (isTitle) {
+            writeGraphData(temp);
+            writeGraphData(",");
+            isTitle = false;
+        } else if (isCategories) {
+            writeGraphData(temp);
+            if (!temp.isEmpty()) {
+                writeGraphData("\n");
+            } else {
+                System.out.println("debugging");
+            }
+            isCategories = false;
+            
+        } else if (isText) {
+            if (temp.startsWith("\n")) {
+                temp = temp.substring(1);
+            }
+            temp = temp + "\n";
+            writeTextData(temp);
+            isText = false;
         }
     }
 }
