@@ -22,18 +22,20 @@ import org.xml.sax.helpers.DefaultHandler;
  * @author rachelmills
  */
 public class MyHandler extends DefaultHandler {
+    
+    private StringBuilder builder;
 
-    FileOutputStream fos;
-    FileOutputStream fos2;
+    private FileOutputStream fos;
+    private FileOutputStream fos2;
     static private Writer out;
     static private Writer out2;
 
-    public String temp;
+    private String temp;
 
-    boolean isId = false;
-    boolean isTitle = false;
-    boolean isCategories = false;
-    boolean isText = false;
+    private boolean isId = false;
+    private boolean isTitle = false;
+    private boolean isCategories = false;
+    private boolean isText = false;
 
     public MyHandler() {
         try {
@@ -91,6 +93,8 @@ public class MyHandler extends DefaultHandler {
                 isCategories = true;
                 break;
             case "text":
+                builder = new StringBuilder();
+
                 isText = true;
                 break;
         }
@@ -98,7 +102,12 @@ public class MyHandler extends DefaultHandler {
 
     @Override
     public void endElement(String uri, String localName, String qName) throws SAXException {
-        // not required 
+       if (qName.equals("text")) {
+        if (builder != null) {
+            writeTextData(builder.toString());
+        }
+        isText = false;
+        }
     }
 
     @Override
@@ -119,14 +128,11 @@ public class MyHandler extends DefaultHandler {
             isCategories = false;
             
         } else if (isText) {
-            if (temp.startsWith("\n")) {
-                temp = temp.substring(1);
+            if (builder != null) {
+                for (int i = start; i < start+length; i++) {
+                    builder.append(buffer[i]);
+                }
             }
-            
-            writeTextData(",");
-            temp = temp + "\n";
-            writeTextData(temp);
-            isText = false;
-        }
+        } 
     }
 }
