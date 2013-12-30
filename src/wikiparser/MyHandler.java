@@ -93,6 +93,7 @@ public class MyHandler extends DefaultHandler {
                 isCategories = true;
                 break;
             case "text":
+                writeTextData(",");
                 builder = new StringBuilder();
 
                 isText = true;
@@ -104,7 +105,7 @@ public class MyHandler extends DefaultHandler {
     public void endElement(String uri, String localName, String qName) throws SAXException {
        if (qName.equals("text")) {
         if (builder != null) {
-            writeTextData(builder.toString());
+            writeTextData(builder.toString().trim().concat("\n"));
         }
         isText = false;
         }
@@ -130,7 +131,7 @@ public class MyHandler extends DefaultHandler {
         } else if (isText) {
             if (builder != null) {
                 for (int i = start; i < start+length; i++) {
-                    builder.append(buffer[i]);
+                        builder.append(buffer[i]);
                 }
             }
         } 
