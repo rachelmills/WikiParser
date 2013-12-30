@@ -1,11 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package wikiparser;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -27,19 +23,19 @@ public class WikiParser {
 
         SAXParserFactory factory = SAXParserFactory.newInstance();
 
-            SAXParser saxParser = factory.newSAXParser();
-            
-            String fileName = "enwiki-20131202-pages-articles.gum.xml.0000.gz";
-            BufferedReader br;
-            
+        SAXParser saxParser = factory.newSAXParser();
+        BufferedReader br;
+        MyHandler handler = new MyHandler();
+
+        File folder = new File("/Volumes/Untitled/wikiprep/testFolder");
+        File[] listOfFiles = folder.listFiles();
+
+        for (File file : listOfFiles) {
+            String fileName = file.getName();
             FileInputStream stream = new FileInputStream(fileName);
             GZIPInputStream gzipstream = new GZIPInputStream(stream);
             br = new BufferedReader(new InputStreamReader(gzipstream));
-        
-            MyHandler handler = new MyHandler();
-         //   TestHandler handler = new TestHandler();
-                        
             saxParser.parse(new InputSource(br), handler);
+        }
     }
 }
-
