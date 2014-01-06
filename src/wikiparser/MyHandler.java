@@ -87,7 +87,7 @@ public class MyHandler extends DefaultHandler {
                 break;
             case "title":
                 isTitle = true;
-                writeGraphData(",");
+                writeGraphData("#");
                 break;
             case "categories":
                 isCategories = true;
@@ -122,7 +122,7 @@ public class MyHandler extends DefaultHandler {
             isTitle = false;
         } else if (isCategories) {            
             if (!(temp.length() == 1 && temp.equals("\n"))) {
-                writeGraphData(",");
+                writeGraphData("#");
                 writeGraphData(temp);
             } 
             writeGraphData("\n");

@@ -25,7 +25,6 @@ public class TestHandler extends DefaultHandler {
     /**
      * Wrap (or 'decorate') a handler object. Every call to the Handler will
      * be printed to the System.out stream.
-     * @param handler the object to be wrapped.
      */
     public TestHandler() { 
         this.handler=new DefaultHandler(); 
@@ -53,6 +52,9 @@ public class TestHandler extends DefaultHandler {
     }
  
     /**
+     * @return 
+     * @throws java.io.IOException
+     * @throws org.xml.sax.SAXException
      * @see org.xml.sax.helpers.DefaultHandler#resolveEntity(java.lang.String, java.lang.String)
      */
     @Override
@@ -63,6 +65,7 @@ public class TestHandler extends DefaultHandler {
     }
  
     /**
+     * @throws org.xml.sax.SAXException
      * @see org.xml.sax.helpers.DefaultHandler#notationDecl(java.lang.String, java.lang.String, java.lang.String)
      */
     @Override
@@ -73,6 +76,7 @@ public class TestHandler extends DefaultHandler {
     }
  
     /**
+     * @throws org.xml.sax.SAXException
      * @see org.xml.sax.helpers.DefaultHandler#unparsedEntityDecl(java.lang.String, java.lang.String, java.lang.String, java.lang.String)
      */
     @Override
@@ -94,6 +98,7 @@ public class TestHandler extends DefaultHandler {
     }
  
     /**
+     * @throws org.xml.sax.SAXException
      * @see org.xml.sax.helpers.DefaultHandler#startDocument()
      */
     @Override
@@ -104,6 +109,7 @@ public class TestHandler extends DefaultHandler {
     }
  
     /**
+     * @throws org.xml.sax.SAXException
      * @see org.xml.sax.helpers.DefaultHandler#endDocument()
      */
     @Override
@@ -114,6 +120,7 @@ public class TestHandler extends DefaultHandler {
     }
  
     /**
+     * @throws org.xml.sax.SAXException
      * @see org.xml.sax.helpers.DefaultHandler#startPrefixMapping(java.lang.String, java.lang.String)
      */
     @Override
@@ -124,6 +131,7 @@ public class TestHandler extends DefaultHandler {
     }
  
     /**
+     * @throws org.xml.sax.SAXException
      * @see org.xml.sax.helpers.DefaultHandler#endPrefixMapping(java.lang.String)
      */
     @Override
@@ -134,6 +142,7 @@ public class TestHandler extends DefaultHandler {
     }
  
     /**
+     * @throws org.xml.sax.SAXException
      * @see org.xml.sax.helpers.DefaultHandler#startElement(java.lang.String, java.lang.String, java.lang.String, org.xml.sax.Attributes)
      */
     @Override
@@ -146,6 +155,7 @@ public class TestHandler extends DefaultHandler {
     }
  
     /**
+     * @throws org.xml.sax.SAXException
      * @see org.xml.sax.helpers.DefaultHandler#endElement(java.lang.String, java.lang.String, java.lang.String)
      */
     @Override
@@ -156,6 +166,7 @@ public class TestHandler extends DefaultHandler {
     }
  
     /**
+     * @throws org.xml.sax.SAXException
      * @see org.xml.sax.helpers.DefaultHandler#characters(char[], int, int)
      */
     @Override
@@ -170,6 +181,7 @@ public class TestHandler extends DefaultHandler {
     }
  
     /**
+     * @throws org.xml.sax.SAXException
      * @see org.xml.sax.helpers.DefaultHandler#ignorableWhitespace(char[], int, int)
      */
     @Override
@@ -180,6 +192,7 @@ public class TestHandler extends DefaultHandler {
     }
  
     /**
+     * @throws org.xml.sax.SAXException
      * @see org.xml.sax.helpers.DefaultHandler#processingInstruction(java.lang.String, java.lang.String)
      */
     @Override
@@ -190,6 +203,7 @@ public class TestHandler extends DefaultHandler {
     }
  
     /**
+     * @throws org.xml.sax.SAXException
      * @see org.xml.sax.helpers.DefaultHandler#skippedEntity(java.lang.String)
      */
     @Override
@@ -200,6 +214,7 @@ public class TestHandler extends DefaultHandler {
     }
  
     /**
+     * @throws org.xml.sax.SAXException
      * @see org.xml.sax.helpers.DefaultHandler#warning(org.xml.sax.SAXParseException)
      */
     @Override
