@@ -40,7 +40,7 @@ public class MyHandler extends DefaultHandler {
     public MyHandler() {
         try {
             fos = new FileOutputStream("ID_Title_Categories.txt");
-            fos2 = new FileOutputStream("ID_Text_v2.txt");
+            fos2 = new FileOutputStream("ID_Text.txt");
         } catch (FileNotFoundException e) {
             Logger.getLogger(MyHandler.class.getName()).log(Level.INFO, "Exception is {0}", e);
         }
@@ -105,7 +105,7 @@ public class MyHandler extends DefaultHandler {
     public void endElement(String uri, String localName, String qName) throws SAXException {
        if (qName.equals("text")) {
         if (builder != null) {
-            writeTextData(builder.toString().trim().concat("~~}~~").concat("\n"));
+            writeTextData(builder.toString().trim().concat("~~}~~").replace("\n", "").concat("\n"));
         }
         isText = false;
         }
