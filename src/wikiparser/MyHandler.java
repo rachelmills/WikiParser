@@ -40,7 +40,7 @@ public class MyHandler extends DefaultHandler {
     public MyHandler() {
         try {
             fos = new FileOutputStream("ID_Title_Categories.txt");
-            fos2 = new FileOutputStream("ID_Text.txt");
+            fos2 = new FileOutputStream("ID_Text_v2.txt");
         } catch (FileNotFoundException e) {
             Logger.getLogger(MyHandler.class.getName()).log(Level.INFO, "Exception is {0}", e);
         }

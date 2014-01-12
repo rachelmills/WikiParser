@@ -27,13 +27,16 @@ public class WikiParser {
         BufferedReader br;
         MyHandler handler = new MyHandler();
 
-        File folder = new File("/Volumes/Untitled/wikiprep/testFolder/");
-        File[] listOfFiles = folder.listFiles();
+       // File folder = new File("/Volumes/Untitled/wikiprep/testFolder/");
+        File folderRemote = new File("home/wikiprep/wikiprep/work/gumFiles");
+      //  File folderRemote = new File("/home/wikiprep/wikiprep/work/gumFiles");
+        File[] listOfFiles = folderRemote.listFiles();
+        
 
         for (File file : listOfFiles) {
             String fileName = file.getName();
       //  String fileName = "/Volumes/Untitled/wikiprep/testFolder/enwiki-20131202-pages-articles.gum.xml.0000.gz";
-            FileInputStream stream = new FileInputStream(folder+"/"+fileName);
+            FileInputStream stream = new FileInputStream(folderRemote+"/"+fileName);
             GZIPInputStream gzipstream = new GZIPInputStream(stream);
             br = new BufferedReader(new InputStreamReader(gzipstream));
             saxParser.parse(new InputSource(br), handler);
